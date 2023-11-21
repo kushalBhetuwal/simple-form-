@@ -1,28 +1,21 @@
-import { useState } from "react";
+import Practice from "./Practice1/Practice";
+import Profile from "./User/Profile";
+import { UserProvider } from "./User/Usercontext";
+import { ThemeProvider, useTheme } from "./UserContext";
+import Switch from './Switch.jsx'
+import './app.css'
 const App =()=>{
-const[score, setScore] = useState(0);
-const[message, setMessage] = useState("");
-
-
-const handleSubmit =(e)=>{
-  e.preventDefault();
-  if(Number(score)<5 && message.length<10){
-    alert("please provide us feedback")
-   return;
-  }
-  alert("form has been submitted")
-}
-  return(
-    <form onSubmit ={handleSubmit}>
+  return (
     <div>
-    <h1>Give us Feedback</h1>
-    <p>Score:{score}</p>
-    <input type='range' min="0" max="10" onChange={(e)=>setScore(e.target.value)}/>
-      <textarea rows="8" cols="100" onChange={(e)=>setMessage(e.target.value)}></textarea><br/>
-      <button type="submit">Submit</button>
+    <Practice/>
+    <UserProvider>
+    <Profile/>
+    </UserProvider>
+    <ThemeProvider>
+      <Switch/>
+    </ThemeProvider>
+   
     </div>
-    </form>
-     
   )
 }
 
